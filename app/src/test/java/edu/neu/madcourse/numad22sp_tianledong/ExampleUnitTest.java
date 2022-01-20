@@ -1,4 +1,4 @@
-package edu.neu.numad22sp_tianledong;
+package edu.neu.madcourse.numad22sp_tianledong;
 
 import org.junit.Test;
 

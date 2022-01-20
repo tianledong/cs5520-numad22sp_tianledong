@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD22Sp_TianleDong">
         <activity
-            android:name=".MainActivity"
+            android:name="edu.neu.madcourse.numad22sp_tianledong.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
