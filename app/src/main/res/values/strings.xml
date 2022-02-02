@@ -3,4 +3,11 @@
     <string name="About">Button</string>
     <string name="about">About</string>
     <string name="clicky">Clicky</string>
+    <string name="a">A</string>
+    <string name="b">b</string>
+    <string name="c">c</string>
+    <string name="d">d</string>
+    <string name="e">e</string>
+    <string name="f">f</string>
+    <string name="clickyButtonText">Pressed: -</string>
 </resources>
