@@ -4,83 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.neu.madcourse.numad22sp_tianledong.ClickyActivity" >
-
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="295dp"
-        android:layout_height="110dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349"
-        app:useDefaultMargins="true">
-
-        <Button
-            android:id="@+id/clickyButtonA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/a"
-            android:onClick="onClick"
-            app:layout_column="0"
-            app:layout_gravity="center"
-            app:layout_row="0" />
-
-        <Button
-            android:id="@+id/clickyButtonB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/b"
-            android:onClick="onClick"
-            app:layout_column="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_gravity="center"
-            app:layout_row="0" />
-
-        <Button
-            android:id="@+id/clickyButtonC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/c"
-            android:onClick="onClick"
-            app:layout_column="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_row="0" />
-
-        <Button
-            android:id="@+id/clickyButtonD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/d"
-            android:onClick="onClick"
-            app:layout_column="0"
-            app:layout_gravity="center"
-            app:layout_row="1" />
-
-        <Button
-            android:id="@+id/clickyButtonE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/e"
-            android:onClick="onClick"
-            app:layout_column="1"
-            app:layout_gravity="center"
-            app:layout_row="1" />
-
-        <Button
-            android:id="@+id/clickyButtonF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/f"
-            android:onClick="onClick"
-            app:layout_column="2"
-            app:layout_gravity="center"
-            app:layout_row="1" />
-
-    </androidx.gridlayout.widget.GridLayout>
+    tools:context="edu.neu.madcourse.numad22sp_tianledong.ClickyActivity">
 
     <TextView
         android:id="@+id/clickyButtonText"
@@ -89,8 +13,100 @@
         android:text="@string/clickyButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="404dp"
+        android:layout_height="220dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.366">
+
+        <Button
+            android:id="@+id/clickyButtonA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/a"
+            app:layout_constraintBottom_toTopOf="@+id/clickyButtonD"
+            app:layout_constraintEnd_toStartOf="@+id/clickyButtonB"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.423"
+            app:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/clickyButtonB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/b"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.226"
+            app:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/clickyButtonD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:onClick="onClick"
+            android:text="@string/d"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clickyButtonE"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/clickyButtonE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:onClick="onClick"
+            android:text="@string/e"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clickyButtonB"
+            app:layout_constraintVertical_bias="0.03"
+            app:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/clickyButtonC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/c"
+            app:layout_constraintBottom_toTopOf="@+id/clickyButtonF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.449"
+            app:layout_constraintStart_toEndOf="@+id/clickyButtonB"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.423" />
+
+        <Button
+            android:id="@+id/clickyButtonF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:onClick="onClick"
+            android:text="@string/f"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.449"
+            app:layout_constraintStart_toEndOf="@+id/clickyButtonE"
+            app:layout_gravity="center" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
