@@ -22,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.aboutButton:
-                Toast.makeText(this, "Name: Tianle Dong\n\nEmail: dong.tia@northeastern.edu\n", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Name: Tianle Dong\n\nEmail: dong.tia@northeastern.edu\n", Toast.LENGTH_SHORT).show();
+                Intent intent_info = new Intent(MainActivity.this, InfoActivity.class);
+                startActivity(intent_info);
                 break;
             case R.id.clickyButton:
-                Intent intent = new Intent(MainActivity.this, ClickyActivity.class);
-                startActivity(intent);
+                Intent intent_clicky = new Intent(MainActivity.this, ClickyActivity.class);
+                startActivity(intent_clicky);
                 break;
         }
     }
