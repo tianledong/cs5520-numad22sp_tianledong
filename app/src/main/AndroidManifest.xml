@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.ClickyActivity" />
+        <activity android:name="edu.neu.madcourse.numad22sp_tianledong.InfoActivity" />
     </application>
 
 </manifest>
