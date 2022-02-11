@@ -1,18 +1,21 @@
 package edu.neu.madcourse.numad22sp_tianledong;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ public class LinkCollectorActivity extends AppCompatActivity {
     private LinkItemRviewAdapter linkItemRviewAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private FloatingActionButton addButton;
+    private EditText linkName;
+    private EditText linkUrl;
 
     private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
     private static final String NUMBER_OF_ITEMS = "NUMBER_OF_ITEMS";
@@ -41,10 +46,10 @@ public class LinkCollectorActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int pos = 0;
-                addItem(pos);
+                openAlertDialogBox(v,linkItemCards.size());
             }
         });
+
 
         //Specify what action a specific gesture performs, in this case swiping right or left deletes the entry
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -55,7 +60,7 @@ public class LinkCollectorActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                Toast.makeText(LinkCollectorActivity.this, "Delete an item", Toast.LENGTH_SHORT).show();
+                Snackbar.make(recyclerView, "Delete an item", Snackbar.LENGTH_SHORT).show();
                 int position = viewHolder.getLayoutPosition();
                 linkItemCards.remove(position);
 
@@ -66,11 +71,28 @@ public class LinkCollectorActivity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
+    private void openAlertDialogBox(View view, int position) {
+        final View alert = getLayoutInflater().inflate(R.layout.link_collector_dialog, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        AlertDialog dialog = builder.setTitle("New Item").setView(alert).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                linkName = alert.findViewById(R.id.linkName);
+                linkUrl = alert.findViewById(R.id.linkUrl);
+                if (isValidUrl(linkUrl.getText().toString())) {
+                    addItem(position, linkName.getText().toString(), linkUrl.getText().toString());
+                } else {
+                    Snackbar.make(recyclerView, "Invalid URL", Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        }).create();
+        dialog.show();
+    }
+
     // Handling Orientation Changes on Android
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-
-
         int size = linkItemCards == null ? 0 : linkItemCards.size();
         outState.putInt(NUMBER_OF_ITEMS, size);
 
@@ -118,16 +140,9 @@ public class LinkCollectorActivity extends AppCompatActivity {
         LinkItemClickListener linkItemClickListener = new LinkItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                linkItemCards.get(position).onItemClick(position);
-                String url = linkItemCards.get(position).getLinkURL();
-                if (isValidUrl(url)) {
-                    Uri uri = Uri.parse(url);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                } else {
-                    Toast.makeText(LinkCollectorActivity.this, "Invalid URL",
-                            Toast.LENGTH_SHORT).show();
-                }
-                linkItemRviewAdapter.notifyItemChanged(position);
+                Uri uri = Uri.parse(linkItemCards.get(position).getLinkURL());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         };
 
@@ -145,10 +160,9 @@ public class LinkCollectorActivity extends AppCompatActivity {
         }
     }
 
-    private void addItem(int position) {
-        linkItemCards.add(position, new LinkItemCard("", ""));
-        Toast.makeText(LinkCollectorActivity.this, "Add an item", Toast.LENGTH_SHORT).show();
-
+    private void addItem(int position, String linkName, String linkUrl) {
+        linkItemCards.add(position, new LinkItemCard(linkName, linkUrl));
+        Snackbar.make(recyclerView, "Add an item", Snackbar.LENGTH_SHORT).show();
         linkItemRviewAdapter.notifyItemInserted(position);
     }
 
