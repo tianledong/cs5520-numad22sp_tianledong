@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import edu.neu.numad22sp_tianledong.R;
 
@@ -22,12 +21,16 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.aboutButton:
-                Intent intent_info = new Intent(MainActivity.this, InfoActivity.class);
-                startActivity(intent_info);
+                Intent intentInfo = new Intent(MainActivity.this, InfoActivity.class);
+                startActivity(intentInfo);
                 break;
             case R.id.clickyButton:
-                Intent intent_clicky = new Intent(MainActivity.this, ClickyActivity.class);
-                startActivity(intent_clicky);
+                Intent intentClicky = new Intent(MainActivity.this, ClickyActivity.class);
+                startActivity(intentClicky);
+                break;
+            case R.id.linkCollectorButton:
+                Intent intentLinkCollector = new Intent(MainActivity.this, LinkCollectorActivity.class);
+                startActivity(intentLinkCollector);
                 break;
         }
     }

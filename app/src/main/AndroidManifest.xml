@@ -20,6 +20,7 @@
         </activity>
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.ClickyActivity" />
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.InfoActivity" />
+        <activity android:name="edu.neu.madcourse.numad22sp_tianledong.LinkCollectorActivity" />
     </application>
 
 </manifest>

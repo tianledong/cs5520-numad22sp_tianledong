@@ -10,7 +10,10 @@
     <string name="e">e</string>
     <string name="f">f</string>
     <string name="clickyButtonText">Pressed: -</string>
-    <string name="linkcollector">Link Collector</string>
+    <string name="linkCollector">Link Collector</string>
     <string name="name">Name: Tianle Dong</string>
     <string name="email">Email: dong.tia@northeastern.edu</string>
+    <string name="AddLinkButton">Add Link</string>
+    <string name="link_name">Link Name</string>
+    <string name="link_url">Link URL</string>
 </resources>
