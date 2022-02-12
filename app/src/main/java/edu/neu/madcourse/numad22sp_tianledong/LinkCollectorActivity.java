@@ -31,9 +31,11 @@ public class LinkCollectorActivity extends AppCompatActivity {
     private FloatingActionButton addButton;
     private EditText linkName;
     private EditText linkUrl;
+    private boolean isDialogBoxOpen;
 
     private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
     private static final String NUMBER_OF_ITEMS = "NUMBER_OF_ITEMS";
+    private static final String IS_DIALOG_BOX_OPEN = "IS_DIALOG_BOX_OPEN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class LinkCollectorActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isDialogBoxOpen = true;
                 openAlertDialogBox(v,linkItemCards.size());
             }
         });
@@ -85,6 +88,7 @@ public class LinkCollectorActivity extends AppCompatActivity {
                 } else {
                     Snackbar.make(recyclerView, "Invalid URL", Snackbar.LENGTH_SHORT).show();
                 }
+                isDialogBoxOpen = false;
             }
         }).create();
         dialog.show();
@@ -95,6 +99,7 @@ public class LinkCollectorActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         int size = linkItemCards == null ? 0 : linkItemCards.size();
         outState.putInt(NUMBER_OF_ITEMS, size);
+        outState.putBoolean(IS_DIALOG_BOX_OPEN, isDialogBoxOpen);
 
         // Need to generate unique key for each item
         // This is only a possible way to do, please find your own way to generate the key
@@ -111,7 +116,17 @@ public class LinkCollectorActivity extends AppCompatActivity {
     private void init(Bundle savedInstanceState) {
 
         initialItemData(savedInstanceState);
+        initialDialogBox(savedInstanceState);
         createRecyclerView();
+    }
+
+    private void initialDialogBox(Bundle savedInstanceState) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(IS_DIALOG_BOX_OPEN)) {
+            isDialogBoxOpen = savedInstanceState.getBoolean(IS_DIALOG_BOX_OPEN);
+            if (isDialogBoxOpen) {
+                openAlertDialogBox(recyclerView, linkItemCards.size());
+            }
+        }
     }
 
     private void initialItemData(Bundle savedInstanceState) {
