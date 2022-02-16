@@ -17,4 +17,8 @@
     <string name="link_name">Link Name</string>
     <string name="link_url">URL</string>
     <string name="locator">Locator</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude_val">0.0</string>
+    <string name="longitude_Val">0.0</string>
 </resources>

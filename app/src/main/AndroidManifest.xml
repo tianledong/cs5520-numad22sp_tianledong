@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.neu.numad22sp_tianledong">
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_td"
@@ -21,6 +23,7 @@
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.ClickyActivity" />
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.InfoActivity" />
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.LinkCollectorActivity" />
+        <activity android:name="edu.neu.madcourse.numad22sp_tianledong.LocatorActivity" />
     </application>
 
 </manifest>
