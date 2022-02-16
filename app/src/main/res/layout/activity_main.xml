@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context="edu.neu.madcourse.numad22sp_tianledong.MainActivity">
 
+    <Button
+        android:id="@+id/locatorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="onClick"
+        android:text="@string/locator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutButton" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

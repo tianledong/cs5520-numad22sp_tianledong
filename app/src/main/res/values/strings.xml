@@ -16,4 +16,5 @@
     <string name="AddLinkButton">Add Link</string>
     <string name="link_name">Link Name</string>
     <string name="link_url">URL</string>
+    <string name="locator">Locator</string>
 </resources>
