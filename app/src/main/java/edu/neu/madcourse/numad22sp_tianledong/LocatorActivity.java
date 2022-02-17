@@ -16,24 +16,32 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.util.Arrays;
 
 public class LocatorActivity extends AppCompatActivity {
     TextView latitude;
     TextView longitude;
+    private FusedLocationProviderClient fusedLocationClient;
+    private boolean failToast;
+
     private static final int REQUEST_LOCATION_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locator);
-
+        failToast = false;
         latitude = findViewById(R.id.latitudeVal);
         longitude = findViewById(R.id.longitudeVal);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         if (!checkLocationPermission()) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION_CODE);
         } else {
-            getLocationByNetwork();
+            getLocation();
         }
     }
     /*
@@ -44,20 +52,27 @@ public class LocatorActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (!Arrays.asList(grantResults).contains(PackageManager.PERMISSION_DENIED)) {
-            getLocationByNetwork();
+            getLocation();
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private void getLocationByNetwork() {
+    private void getLocation() {
         if (checkLocationPermission()) {
-            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Location GPS = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (GPS == null) {
-                Toast.makeText(this, "Unable to get location by GPS", Toast.LENGTH_SHORT).show();
-            } else {
-                latitude.setText("" + GPS.getLatitude());
-                longitude.setText("" + GPS.getLongitude());
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                latitude.setText("" + location.getLatitude());
+                                longitude.setText("" + location.getLongitude());
+                            } else {
+                                failToast = true;
+                            }
+                        }
+                    });
+            if (failToast) {
+                Toast.makeText(this, "Unable to get location", Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(this, "No permission", Toast.LENGTH_SHORT).show();
