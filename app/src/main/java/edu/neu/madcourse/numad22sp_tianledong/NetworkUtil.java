@@ -1,8 +1,5 @@
 package edu.neu.madcourse.numad22sp_tianledong;
 
-import android.util.Log;
-import android.util.Patterns;
-import android.webkit.URLUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,21 +30,8 @@ public final class NetworkUtil {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setDoInput(true);
-
         conn.connect();
-
-        // Read response.
         InputStream inputStream = conn.getInputStream();
-        String resp = NetworkUtil.convertStreamToString(inputStream);
-
-        return resp;
+        return NetworkUtil.convertStreamToString(inputStream);
     }
-
-
-    @Deprecated
-    public static void print(Object o){
-        Log.e("log",String.valueOf(o));
-    }
-
-
 }
