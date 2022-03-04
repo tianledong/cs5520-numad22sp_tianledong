@@ -1,12 +1,12 @@
 package edu.neu.madcourse.numad22sp_tianledong;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +33,6 @@ public class WebActivity extends AppCompatActivity {
     private TextView coValue;
     private TextView pm25Value;
     private ProgressBar progressBar;
-    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,6 @@ public class WebActivity extends AppCompatActivity {
         pm25Value = findViewById(R.id.webResultPM2_5Value);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-//        imageView = findViewById(R.id.webImageView);
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,28 +65,42 @@ public class WebActivity extends AppCompatActivity {
 
         });
     }
+    // referred from: https://stackoverflow.com/questions/26893796/how-to-set-emoji-by-unicode-in-a-textview
+    public String getEmojiByUnicode(int unicode){
+        return new String(Character.toChars(unicode));
+    }
 
 
+
+    @SuppressLint("SetTextI18n")
     private void setData(String airQualityValue, String coValue, String pm25Value) {
         String airQuality = "";
+        int unicode = 1;
         switch (airQualityValue) {
             case "1":
                 airQuality = "Good";
+                unicode = 0x1F60A;
                 break;
             case "2":
                 airQuality = "Fair";
+                unicode = 0x1F60C;
                 break;
             case "3":
                 airQuality = "Moderate";
+                unicode = 0x1F633;
                 break;
             case "4":
                 airQuality = "Poor";
+                unicode = 0x1F614;
                 break;
             case "5":
                 airQuality = "Very Poor";
+                unicode = 0x1F637;
                 break;
         }
-        this.airQualityValue.setText(airQuality);
+
+        String emoji = getEmojiByUnicode(unicode);
+        this.airQualityValue.setText(airQuality + emoji);
         this.coValue.setText(coValue);
         this.pm25Value.setText(pm25Value);
         this.progressBar.setVisibility(View.INVISIBLE);
@@ -132,18 +144,23 @@ public class WebActivity extends AppCompatActivity {
             String coResult;
             String pm25Result;
             JSONArray resultArray;
-            JSONObject components = new JSONObject();
+            JSONObject components;
 
             try {
                 resultArray = jObject.getJSONArray("list");
                 result = resultArray.getJSONObject(0).getJSONObject("main").getString("aqi");
-                components = resultArray.getJSONObject(0).getJSONObject("components");
-                coResult = components.getString("co");
-                pm25Result = components.getString("pm2_5");
-                setData(result, coResult, pm25Result);
+                if (result.equals("0")) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplication(), "No data for this location", Toast.LENGTH_SHORT).show();
+                } else {
+                    components = resultArray.getJSONObject(0).getJSONObject("components");
+                    coResult = components.getString("co");
+                    pm25Result = components.getString("pm2_5");
+                    setData(result, coResult, pm25Result);
+                }
             } catch (JSONException e) {
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplication(), e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "Something went wrong. Please check your inputs.", Toast.LENGTH_SHORT).show();
             }
         }
     }
