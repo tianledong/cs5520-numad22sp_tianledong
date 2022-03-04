@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/webLatitude"
-        android:layout_width="350dp"
+        android:layout_width="356dp"
         android:layout_height="30dp"
         android:layout_marginTop="60dp"
         android:background="@android:color/darker_gray"
@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/webLongitude"
-        android:layout_width="350dp"
+        android:layout_width="356dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/darker_gray"
