@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentLocator = new Intent(MainActivity.this, LocatorActivity.class);
                 startActivity(intentLocator);
                 break;
+            case R.id.webServiceButton:
+                Intent intentWebService = new Intent(MainActivity.this, WebActivity.class);
+                startActivity(intentWebService);
+                break;
+
         }
     }
 }

@@ -25,6 +25,7 @@
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.InfoActivity" />
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.LinkCollectorActivity" />
         <activity android:name="edu.neu.madcourse.numad22sp_tianledong.LocatorActivity" />
+        <activity android:name="edu.neu.madcourse.numad22sp_tianledong.WebActivity" />
     </application>
 
 </manifest>

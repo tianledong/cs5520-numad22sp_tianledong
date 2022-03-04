@@ -21,4 +21,7 @@
     <string name="longitude"><b>Longitude</b></string>
     <string name="latitude_val">0.0</string>
     <string name="longitude_Val">0.0</string>
+    <string name="web_service">Web Service</string>
+    <string name="ok">OK</string>
+    <string name="air_pollution">Air Pollution</string>
 </resources>

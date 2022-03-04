@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.neu.madcourse.numad22sp_tianledong.WebActivity">
+
+
+    <EditText
+        android:id="@+id/webLatitude"
+        android:layout_width="350dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:background="@android:color/darker_gray"
+        android:hint="@string/latitude"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/webLongitude"
+        android:layout_width="350dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray"
+        android:hint="@string/longitude"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/webLatitude" />
+
+    <Button
+        android:id="@+id/webOkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/webLongitude" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="222dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/air_pollution"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/webLatitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="238dp"
+        android:layout_height="210dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/webLatitude"
+        app:layout_constraintVertical_bias="0.245" />
+
+    <TextView
+        android:id="@+id/webResultValue"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="16dp"
+        android:text="NA"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toEndOf="@+id/webResultTitle"
+        app:layout_constraintTop_toBottomOf="@+id/webOkButton" />
+
+    <TextView
+        android:id="@+id/webResultPM2.5Value"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:text="NA"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/webResultPM2.5"
+        app:layout_constraintTop_toBottomOf="@+id/webResultCoValue" />
+
+    <TextView
+        android:id="@+id/webResultCoValue"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:text="NA"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/webResultCo"
+        app:layout_constraintTop_toBottomOf="@+id/webResultValue" />
+
+    <TextView
+        android:id="@+id/webResultCo"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="36dp"
+        android:text="Co"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/webResultTitle" />
+
+    <TextView
+        android:id="@+id/webResultPM2.5"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="36dp"
+        android:text="PM 2.5"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/webResultCo" />
+
+    <TextView
+        android:id="@+id/webResultTitle"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="Air Quality"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/webOkButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
